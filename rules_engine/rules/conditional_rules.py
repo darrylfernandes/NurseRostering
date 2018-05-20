@@ -18,7 +18,7 @@ class And(Rule):
             return self.lhs.execute(rule_input) and self.rhs.execute(rule_input), "Pass"
         else:
             return False, "The left-hand/right-hand side should be of type Rule. " \
-                          "Kindly validate the Rule Config input and try again"
+                          "Kindly validate the Rule Config input for Rule Id {} and try again".format(self.rule_id)
 
 
 class Or(Rule):
@@ -38,4 +38,4 @@ class Or(Rule):
             return self.lhs.execute(rule_input) or self.rhs.execute(rule_input), "Pass"
         else:
             return False, "The left-hand/right-hand side should be of type Rule. " \
-                          "Kindly validate the Rule Config input and try again"
+                          "Kindly validate the Rule Config input for Rule Id {} and try again".format(self.rule_id)
