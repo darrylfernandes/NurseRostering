@@ -1,7 +1,7 @@
-import abc
+from abc import ABC, abstractmethod
 
 
-class Rule(abc):
+class Rule(ABC):
 
     def __init__(self, rule_id, rule_description):
         """
@@ -12,7 +12,7 @@ class Rule(abc):
         self.rule_id = rule_id
         self.rule_description = rule_description
 
-    @abc.abstractmethod
+    @abstractmethod
     def execute(self, rule_input):
         """
 
