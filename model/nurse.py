@@ -1,24 +1,24 @@
 class Nurse(object):
-    def __init__(self, name, shift_state):
+    def __init__(self, name):
         """
 
         :param name: Name of the Nurse
-        :param shift_state: Entity of type ShiftState
+
+        current_shift_state: Entity of type ShiftState
         """
         self.name = name
-        self.shift_state = shift_state
+        self.current_shift_state = ShiftState()
 
 
 class ShiftState(object):
     def __init__(self):
         """
             Initializes the Nurse's Working Shift State
-            week_shift_status:      Depending on the start day of the month, the day of the week on which the shift
-                                    was assigned will be marked as True
+            shift_state:      Depending on the start day of the month, the day of the week on which the shift
+                                    was assigned will be marked.
+                                    {"2018-05-20":"Morning", "2018-05-21":None, "2018-05-22": "Night", ...]
             night_shifts_per_month: Incremented by 1 each time a nurse is assigned a night shift
-            shift_per_day:          Incremented by 1 each time a nurse is assigned either
-                                    morning, evening or night shift
         """
-        self.shift_per_day = 0
-        self.week_shift_status = (False, False, False, False, False, False, False)
+        self.shift_state = []
         self.night_shifts_per_month = 0
+
