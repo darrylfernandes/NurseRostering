@@ -10,10 +10,13 @@ class RuleExecutor(object):
         """
 
         :param rules: List of Rule objects to be executed
-        :return: (bool, str) i.e (Rule Execution Status, Rule Execution Status Reason)
+        :return:    (bool, str, list)
+                    i.e (Rule Execution Status, Rule Execution Status Reason, Overall Rule Execution Status)
         """
+        rule_execution_status = []
         for rule in rules:
-            status, status_reason = rule.execute(self.rule_input)
+            rule_id, status, status_reason = rule.execute(self.rule_input)
+            rule_execution_status.append((rule_id, rule.rule_description, status, status_reason))
             if not status:
-                return status, status_reason
-        return True, "Pass"
+                return False, "Fail", rule_execution_status
+        return True, "Pass", rule_execution_status
