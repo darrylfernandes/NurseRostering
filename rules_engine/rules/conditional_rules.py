@@ -15,9 +15,9 @@ class And(Rule):
 
     def execute(self, rule_input):
         if (self.lhs and isinstance(self.lhs, Rule)) and (self.rhs and isinstance(self.rhs, Rule)):
-            return self.lhs.execute(rule_input) and self.rhs.execute(rule_input), "Pass"
+            return self.rule_id, self.lhs.execute(rule_input) and self.rhs.execute(rule_input), "Pass"
         else:
-            return False, "The left-hand/right-hand side should be of type Rule. " \
+            return self.rule_id, False, "The left-hand/right-hand side should be of type Rule. " \
                           "Kindly validate the Rule Config input for Rule Id {} and try again".format(self.rule_id)
 
 
@@ -35,7 +35,7 @@ class Or(Rule):
 
     def execute(self, rule_input):
         if (self.lhs and isinstance(self.lhs, Rule)) and (self.rhs and isinstance(self.rhs, Rule)):
-            return self.lhs.execute(rule_input) or self.rhs.execute(rule_input), "Pass"
+            return self.rule_id, self.lhs.execute(rule_input) or self.rhs.execute(rule_input), "Pass"
         else:
-            return False, "The left-hand/right-hand side should be of type Rule. " \
+            return self.rule_id, False, "The left-hand/right-hand side should be of type Rule. " \
                           "Kindly validate the Rule Config input for Rule Id {} and try again".format(self.rule_id)
