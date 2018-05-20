@@ -2,14 +2,14 @@ from .rule import Rule
 
 
 class And(Rule):
-    def __init__(self, rule_id, lhs, rhs):
+    def __init__(self, rule_id, rule_description, lhs, rhs):
         """
 
         :param rule_id: Unique Rule Id
         :param lhs: Left Hand Side Rule in the AND operation eg:  (rule1 and rule2 where rule1 is lhs rule)
         :param rhs: Right Hand Side Rule in the AND operation eg:  (rule1 and rule2 where rule2 is rhs rule)
         """
-        super(And, self).__init__(rule_id)
+        super(And, self).__init__(rule_id, rule_description)
         self.lhs = lhs
         self.rhs = rhs
 
@@ -22,14 +22,14 @@ class And(Rule):
 
 
 class Or(Rule):
-    def __init__(self, rule_id, lhs, rhs):
+    def __init__(self, rule_id, rule_description, lhs, rhs):
         """
 
         :param rule_id: Unique Rule Id
         :param lhs: Left Hand Side Rule in the AND operation eg:  (rule1 and rule2 where rule1 is lhs rule)
         :param rhs: Right Hand Side Rule in the AND operation eg:  (rule1 and rule2 where rule2 is rhs rule)
         """
-        super(And, self).__init__(rule_id)
+        super(Or, self).__init__(rule_id, rule_description)
         self.lhs = lhs
         self.rhs = rhs
 
