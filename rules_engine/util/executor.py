@@ -13,10 +13,16 @@ class RuleExecutor(object):
         :return:    (bool, str, list)
                     i.e (Rule Execution Status, Rule Execution Status Reason, Overall Rule Execution Status)
         """
-        rule_execution_status = []
+        rule_execution_trace = []
+        overall_rule_execution_status = True
+        overall_rule_execution_status_reason = 'Pass'
         for rule in rules:
-            rule_id, status, status_reason = rule.execute(self.rule_input)
-            rule_execution_status.append((rule_id, rule.rule_description, status, status_reason))
+            rule_id, rule_description, status, status_reason, parent_rule_id, parent_rule_description, \
+                children_rule_trace = rule.execute(self.rule_input)
+            rule_execution_trace.append((rule_id, rule_description, status, status_reason,
+                                         parent_rule_id, parent_rule_description, children_rule_trace))
             if not status:
-                return False, "Fail", rule_execution_status
-        return True, "Pass", rule_execution_status
+                overall_rule_execution_status = False
+                overall_rule_execution_status_reason = 'Fail'
+
+        return overall_rule_execution_status, overall_rule_execution_status_reason, rule_execution_trace
