@@ -11,8 +11,8 @@ def wrap_rule_exception(f):
         try:
             return f(*args, **kwargs)
         except (RuleException, TypeError, Exception):
-            parent_rule_id = kwargs['parent_rule'].rule_id if kwargs['parent_rule'] else None
-            parent_rule_description = kwargs['parent_rule'].rule_description if kwargs['parent_rule'] else None
+            parent_rule_id = kwargs['parent_rule'].rule_id if kwargs.get('parent_rule') else None
+            parent_rule_description = kwargs['parent_rule'].rule_description if kwargs.get('parent_rule') else None
             return args[0].rule_id, args[0].rule_description, False, \
                 "Exception occurred during the execution of the Rule Id {} :- {}"\
                 .format(args[0].rule_id, traceback.format_exc()), parent_rule_id, parent_rule_description, []
